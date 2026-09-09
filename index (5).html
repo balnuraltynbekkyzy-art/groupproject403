@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrightPath Language Centre — Illuminating Your Journey to Fluency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#8E1116;
+    --red-dark:#4A0B0E;
+    --black:#141110;
+    --gold:#E8A23D;
+    --orange:#D9622C;
+    --paper:#F5EFE1;
+    --paper2:#EAE0C9;
+    --ink:#1B1512;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    margin:0;
+    letter-spacing:.01em;
+    color:var(--black);
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+  @media (max-width:640px){.wrap{padding:0 20px;}}
+  .rule{height:3px;background:var(--black);}
+  .rule.red{background:var(--red);}
+
+  /* offset block button — flat, hard shadow, no blur, no radius */
+  .btn{
+    position:relative; display:inline-block; text-decoration:none;
+    font-family:'Work Sans',sans-serif; font-weight:700; font-size:.92rem;
+    padding:13px 26px; color:#fff; background:var(--red); border:2px solid var(--black);
+    box-shadow:5px 5px 0 var(--black);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:hover{transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--black);}
+  .btn:active{transform:translate(0,0); box-shadow:2px 2px 0 var(--black);}
+  .btn.ghost{background:var(--paper); color:var(--black);}
+  .btn.on-dark{background:var(--gold); color:var(--black); border-color:var(--black);}
+
+  /* NAV */
+  header{position:sticky; top:0; z-index:50; background:var(--paper); border-bottom:3px solid var(--black);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+  .brand svg{width:30px;height:30px;flex-shrink:0;}
+  .brand-text{font-family:'Anton',sans-serif;font-size:1.25rem;line-height:1;letter-spacing:.01em;}
+  .brand-text small{display:block;font-family:'Work Sans',sans-serif;text-transform:none;font-weight:600;font-size:.66rem;color:var(--red);letter-spacing:.02em;margin-top:4px;}
+  nav.links{display:flex;gap:30px;align-items:center;}
+  nav.links a{text-decoration:none;font-size:.95rem;font-weight:600;color:var(--black);}
+  nav.links a:not(.btn){border-bottom:2px solid transparent;}
+  nav.links a:not(.btn):hover{border-bottom-color:var(--red);}
+  .mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+  .mobile-toggle span{display:block;width:22px;height:2px;background:var(--black);margin:5px 0;}
+  @media (max-width:840px){
+    nav.links{position:fixed;top:66px;left:0;right:0;background:var(--paper);flex-direction:column;
+      align-items:flex-start;padding:22px 20px 28px;border-bottom:3px solid var(--black);
+      gap:16px; transform:translateY(-8px); opacity:0; pointer-events:none; transition:.18s ease;}
+    nav.links.open{transform:translateY(0); opacity:1; pointer-events:auto;}
+    .mobile-toggle{display:block;}
+    nav.links .btn{width:100%;text-align:center;}
+  }
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;padding:64px 0 0;}
+  .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:10px;align-items:end;}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .hero-copy{padding:24px 0 56px;}
+  .hero h1{font-size:clamp(2.6rem,6vw,4.6rem);line-height:.98;}
+  .hero h1 .r{color:var(--red);}
+  .hero p.lede{margin-top:24px;font-size:1.15rem;color:var(--ink);max-width:44ch;font-weight:500;}
+  .hero-cta{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;}
+  .hero-shard{position:relative; background:var(--red); aspect-ratio:4/5; overflow:hidden;
+    clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 26%);}
+  .hero-shard svg{position:absolute;inset:0;width:100%;height:100%;}
+  .hero-shard .tag{position:absolute;bottom:22px;left:22px;right:22px;color:#fff;font-weight:700;font-size:.85rem;}
+  .stat-strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:3px solid var(--black);}
+  .stat-strip div{padding:22px 24px;border-right:2px solid var(--black);}
+  .stat-strip div:last-child{border-right:none;}
+  .stat-strip strong{display:block;font-family:'Anton',sans-serif;font-size:2rem;color:var(--red);}
+  .stat-strip span{font-size:.82rem;font-weight:600;}
+  @media (max-width:640px){.stat-strip{grid-template-columns:1fr;}.stat-strip div{border-right:none;border-bottom:2px solid var(--black);}}
+  .founders-strip{padding:22px 0 26px;border-bottom:3px solid var(--black);}
+  .founders-label{display:block;font-weight:700;font-size:.8rem;letter-spacing:.02em;color:var(--red);margin-bottom:8px;text-transform:uppercase;}
+  .founders-names{display:block;font-family:'Anton',sans-serif;font-size:clamp(1.6rem,4.2vw,3.2rem);line-height:1.05;color:var(--black);}
+  .founders-group{display:inline-block;margin-top:10px;font-weight:700;font-size:.85rem;color:#fff;background:var(--red);padding:4px 10px;}
+
+  /* MISSION QUOTE BAND */
+  .mission{position:relative;background:var(--red);color:#fff;padding:64px 0;}
+  .mission-inner{max-width:820px;}
+  .mission .label{font-weight:700;font-size:.8rem;letter-spacing:.02em;color:var(--gold);margin-bottom:14px;display:block;}
+  .mission p{font-family:'Anton',sans-serif;text-transform:none;font-weight:400;font-size:clamp(1.4rem,3vw,2.2rem);line-height:1.28;}
+
+  /* SECTIONS */
+  .section{padding:80px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:46px;flex-wrap:wrap;
+    border-bottom:3px solid var(--black); padding-bottom:22px;}
+  .section-head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);}
+  .section-head p{margin:0;color:var(--ink);max-width:34ch;font-weight:500;}
+  .tag-label{display:inline-block;background:var(--black);color:#fff;font-weight:700;font-size:.72rem;padding:5px 10px;margin-bottom:12px;}
+  .tag-label.gold{background:var(--gold);color:var(--black);}
+  .tag-label.red{background:var(--red);color:#fff;}
+
+  /* PROGRAMS — table/list, not card grid */
+  .prog-list{border-top:3px solid var(--black);}
+  .prog-row{display:grid;grid-template-columns:2fr 1.4fr 3fr;gap:20px;align-items:center;
+    padding:22px 0;border-bottom:2px solid var(--black);}
+  @media (max-width:760px){.prog-row{grid-template-columns:1fr;gap:6px;padding:18px 0;}}
+  .prog-row .lang{font-family:'Anton',sans-serif;font-size:1.6rem;}
+  .prog-row .levels{font-weight:700;font-size:.82rem;color:var(--red);}
+  .prog-row p{margin:0;color:var(--ink);font-size:.95rem;}
+
+  /* WHY / DIFFERENTIATION — editorial two column, flat tag not numeral */
+  .why-grid{display:grid;grid-template-columns:repeat(2,1fr);}
+  @media (max-width:760px){.why-grid{grid-template-columns:1fr;}}
+  .why-card{padding:30px 30px 34px 0;border-top:2px solid var(--black);}
+  .why-card:nth-child(odd){border-right:2px solid var(--black);padding-right:30px;}
+  @media (max-width:760px){.why-card:nth-child(odd){border-right:none;}}
+  .why-card h3{font-size:1.35rem;margin:6px 0 10px;}
+  .why-card p{color:var(--ink);font-size:.96rem;margin:0;}
+
+  /* VALUES — flat horizontal band, big word type, no circles */
+  .values{background:var(--paper2);}
+  .value-row{display:grid;grid-template-columns:repeat(3,1fr);border-top:3px solid var(--black);border-bottom:3px solid var(--black);}
+  @media (max-width:820px){.value-row{grid-template-columns:1fr;}}
+  .value{padding:34px 30px;border-right:2px solid var(--black);position:relative;}
+  .value:last-child{border-right:none;}
+  @media (max-width:820px){.value{border-right:none;border-bottom:2px solid var(--black);}.value:last-child{border-bottom:none;}}
+  .value h3{font-size:1.7rem;margin-bottom:12px;}
+  .value h3 .r{color:var(--red);}
+  .value p{color:var(--ink);margin:0;font-size:.96rem;}
+
+  /* GOLDEN RULE */
+  .golden{background:var(--black);color:#fff;padding:90px 0;position:relative;overflow:hidden;}
+  .golden-shard{position:absolute;top:0;right:0;width:38%;height:100%;background:var(--red);
+    clip-path:polygon(30% 0,100% 0,100% 100%,0 100%);}
+  .golden-shard.b{background:var(--gold);width:16%;opacity:.9;clip-path:polygon(45% 0,100% 0,55% 100%,0 100%);}
+  .golden-inner{max-width:720px;position:relative;z-index:2;}
+  .golden blockquote{margin:0;font-family:'Anton',sans-serif;text-transform:none;font-weight:400;font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.28;}
+  .golden cite{display:block;margin-top:22px;font-style:normal;font-size:.9rem;color:var(--gold);font-weight:700;letter-spacing:.03em;}
+  .golden .note{margin-top:26px;color:rgba(255,255,255,.7);font-size:.95rem;max-width:54ch;}
+
+  /* SMALL STEPS BAND */
+  .steps-band{padding:56px 0;background:var(--gold);border-top:3px solid var(--black);border-bottom:3px solid var(--black);}
+  .steps-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+  .steps-band h3{font-size:clamp(1.5rem,3vw,2.2rem);}
+  .steps-band span{display:block;margin-top:6px;font-family:'Work Sans',sans-serif;font-weight:600;font-size:.92rem;}
+
+  /* CONTACT / FOOTER */
+  footer{background:var(--paper);padding:64px 0 24px;position:relative;}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:44px;padding-bottom:40px;border-bottom:2px solid var(--black);}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr;gap:32px;}}
+  footer h3{font-family:'Anton',sans-serif;font-size:1.05rem;margin-bottom:16px;}
+  footer p{color:var(--ink);font-size:.92rem;max-width:38ch;}
+  footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+  footer ul a{text-decoration:none;color:var(--ink);font-size:.92rem;font-weight:600;}
+  footer ul a:hover{color:var(--red);}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:20px;flex-wrap:wrap;gap:10px;}
+  .foot-bottom p{color:#786D5C;font-size:.8rem;margin:0;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 60 60" aria-hidden="true">
+        <path d="M6 52 C16 52 18 40 26 40 C34 40 32 30 30 26" stroke="#8E1116" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M14 52 C22 52 24 34 32 34 C40 34 40 24 34 18" stroke="#E8A23D" stroke-width="6" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-text">BrightPath<small>Language Centre</small></span>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#programs">Programs</a>
+      <a href="#why">Why Us</a>
+      <a href="#values">Values</a>
+      <a href="#contact">Visit Us</a>
+      <a class="btn" href="#contact">Book a Trial</a>
+    </nav>
+    <button class="mobile-toggle" aria-label="Toggle menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Illuminating<br>your journey<br>to <span class="r">fluency.</span></h1>
+        <p class="lede">BrightPath makes language learning practical, engaging, and accessible — helping every learner speak with confidence and open doors to study, work, travel, and global opportunity.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#contact">Book a Free Trial</a>
+          <a class="btn ghost" href="#programs">See Our Programs</a>
+        </div>
+      </div>
+      <div class="hero-shard">
+        <svg viewBox="0 0 300 380" preserveAspectRatio="xMidYMid slice">
+          <rect width="300" height="380" fill="#8E1116"/>
+          <path d="M-20 300 C40 300 60 220 120 220 C180 220 190 150 160 90" fill="none" stroke="#E8A23D" stroke-width="18" stroke-linecap="round"/>
+          <path d="M0 340 C60 340 90 240 150 240 C210 240 220 170 190 100" fill="none" stroke="#F5EFE1" stroke-width="18" stroke-linecap="round" opacity=".85"/>
+          <g stroke="#E8A23D" stroke-width="4" stroke-linecap="round">
+            <line x1="160" y1="60" x2="160" y2="20"/>
+            <line x1="200" y1="76" x2="228" y2="46"/>
+            <line x1="120" y1="76" x2="92" y2="46"/>
+          </g>
+        </svg>
+        <div class="tag">Downtown campus · small classes · exam-ready</div>
+      </div>
+    </div>
+    <div class="stat-strip">
+      <div><strong>6</strong><span>languages taught</span></div>
+      <div><strong>8</strong><span>max learners per class</span></div>
+      <div><strong>3</strong><span>values we teach by</span></div>
+    </div>
+    <div class="founders-strip">
+      <span class="founders-label">Founded &amp; run by</span>
+      <span class="founders-names">Balnur · Aidana · Marzhan · Akhtuigyn · Togzhan</span>
+      <span class="founders-group">Group 403</span>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission">
+    <div class="wrap mission-inner">
+      <span class="label">The BrightPath Mission</span>
+      <p>"We make language learning practical, engaging, and accessible — helping every learner communicate confidently and open doors to study, work, travel, and global opportunities."</p>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="section programs" id="programs">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What We Teach</h2>
+        <p>Every course pairs a certified teacher with interactive digital practice, so learners build the confidence to actually use the language.</p>
+      </div>
+      <div class="prog-list">
+        <div class="prog-row"><div class="lang">English</div><div class="levels">A1 — C2 · IELTS / TOEFL</div><p>General, academic, and exam-focused tracks with weekly speaking labs.</p></div>
+        <div class="prog-row"><div class="lang">French</div><div class="levels">A1 — C1 · DELF / DALF</div><p>Conversation-first classes with a strong focus on everyday fluency.</p></div>
+        <div class="prog-row"><div class="lang">German</div><div class="levels">A1 — C1 · Goethe</div><p>Structured pathways for study and work migration goals.</p></div>
+        <div class="prog-row"><div class="lang">Spanish</div><div class="levels">A1 — B2 · Travel & Business</div><p>Practical courses for travel, business, and cultural immersion.</p></div>
+        <div class="prog-row"><div class="lang">Mandarin</div><div class="levels">A1 — B2 · HSK</div><p>Character literacy paired with spoken practice from day one.</p></div>
+        <div class="prog-row"><div class="lang">Korean</div><div class="levels">A1 — B1 · TOPIK</div><p>A fast-growing track for study, culture, and career pathways.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section" id="why" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Why Not A Competitor?</h2>
+        <p>The market is crowded with centres and apps competing on price. We compete on outcomes.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <span class="tag-label red">Teachers</span>
+          <h3>Highly qualified, closely involved</h3>
+          <p>Small classes led by certified teachers who help shape our courses, activities, and methods — the people teaching are also the people improving how we teach.</p>
+        </div>
+        <div class="why-card">
+          <span class="tag-label">Groups</span>
+          <h3>Small by design</h3>
+          <p>We cap class sizes so every learner is heard and corrected, not lost in a lecture hall. Personalised attention is a feature, not an upsell.</p>
+        </div>
+        <div class="why-card">
+          <span class="tag-label gold">Technology</span>
+          <h3>A tool we use, not one we fear</h3>
+          <p>AI practice tools, interactive platforms, and digital coursework extend classroom learning between sessions — supporting the teacher, never replacing them.</p>
+        </div>
+        <div class="why-card">
+          <span class="tag-label red">Outcomes</span>
+          <h3>Built for exams and real life</h3>
+          <p>International exam preparation sits alongside practical speaking courses, so learners leave with a certificate and the confidence to actually use it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section values" id="values">
+    <div class="wrap">
+      <div class="section-head" style="border-bottom:none;">
+        <h2>Small Steps, Big Progress</h2>
+        <p>Three values guide every class, every hire, and every decision we make.</p>
+      </div>
+      <div class="value-row">
+        <div class="value">
+          <h3><span class="r">01</span> Excellence</h3>
+          <p>We provide high-quality teaching and continuously improve our courses rather than letting them stand still.</p>
+        </div>
+        <div class="value">
+          <h3><span class="r">02</span> Respect</h3>
+          <p>We respect every learner, teacher, culture, and individual learning style that walks through our door.</p>
+        </div>
+        <div class="value">
+          <h3><span class="r">03</span> Innovation</h3>
+          <p>We use modern technology and creative methods to keep learning effective, current, and genuinely engaging.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLDEN RULE -->
+  <section class="golden">
+    <div class="golden-shard"></div>
+    <div class="golden-shard b"></div>
+    <div class="wrap">
+      <div class="golden-inner">
+        <blockquote>"Every student can learn, just not on the same day or in the same way."</blockquote>
+        <cite>— George Evans</cite>
+        <p class="note">This is our golden rule. Every learner has different abilities, needs, and speeds — so our teachers adapt their methods and pace to each student's individual progress, not the other way around.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="steps-band">
+    <div class="wrap steps-inner">
+      <div>
+        <h3>Ready to start your path?</h3>
+        <span>Book a free trial class — no pressure, just a first conversation.</span>
+      </div>
+      <a class="btn" style="box-shadow:5px 5px 0 var(--black);" href="#contact">Book a Free Trial</a>
+    </div>
+  </div>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:14px;">
+          <svg viewBox="0 0 60 60" width="28" height="28" aria-hidden="true">
+            <path d="M6 52 C16 52 18 40 26 40 C34 40 32 30 30 26" stroke="#8E1116" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M14 52 C22 52 24 34 32 34 C40 34 40 24 34 18" stroke="#E8A23D" stroke-width="6" fill="none" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-text">BrightPath<small>Language Centre</small></span>
+        </a>
+        <p>We make language learning practical, engaging, and accessible — helping every learner communicate confidently and open doors to study, work, travel, and global opportunity.</p>
+      </div>
+      <div>
+        <h3>Visit</h3>
+        <ul>
+          <li style="font-weight:400;color:#786D5C;">Open Mon – Sat, 9:00 – 20:00</li>
+          <li style="font-weight:400;color:#786D5C;">Downtown campus</li>
+          <li><a href="mailto:hello@brightpathlanguage.example">hello@brightpathlanguage.example</a></li>
+          <li><a href="tel:+10000000000">+1 (000) 000-0000</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#values">Our Values</a></li>
+          <li><a class="btn on-dark" href="#top" style="margin-top:6px;box-shadow:5px 5px 0 var(--black);">Book a Free Trial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 BrightPath Language Centre. A fictional centre created for coursework purposes.</p>
+      <p>Learn languages. Connect worlds.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
